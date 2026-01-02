@@ -1,17 +1,3 @@
-getgenv().alts = { 
-123,
-
-}
-
-getgenv().dont_kick = {
-    123,
-}
-
-getgenv().ps_owner1 = 123
-getgenv().pre_drop = 1000000
-getgenv().fps_cap = 3
-
-
 
 -- if not getgenv().directory then
 --     game.Players.LocalPlayer:Kick("Script directory was not found!\nNOTE: THE SERVER MAY BE DOWN \nplease dm empireboost if you have entered yours correctly")
