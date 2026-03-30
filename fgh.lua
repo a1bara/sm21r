@@ -192,7 +192,7 @@ end
 
 
 
-local url = "ws://localhost:8000"
+local url = "ws://10.0.0.79:8001"
 local ws
 local Players = game:GetService('Players')
 local Terrain = Workspace:FindFirstChild('Terrain')
@@ -1193,7 +1193,7 @@ if table.find(getgenv().alts, localPlayer.UserId) then
 				task.wait(15.5)
 				if countFloorCash() < pre_drop then
 					if isOwnerInGame() then
-						mainEvent:FireServer("DropMoney", 15000)
+						mainEvent:FireServer("DropMoney", 20000)
 					end
 				end
 			end
