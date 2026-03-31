@@ -192,7 +192,7 @@ end
 
 
 
-local url = "ws://10.0.0.79:8000"
+local url = "ws://10.0.0.79:8001"
 local ws
 local Players = game:GetService('Players')
 local Terrain = Workspace:FindFirstChild('Terrain')
