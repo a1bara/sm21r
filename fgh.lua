@@ -1080,7 +1080,7 @@ if table.find(getgenv().alts, localPlayer.UserId) then
     print("WebSocket closed. Reconnecting in 5s...")
     task.wait(5)
     connect()
-end)you 
+end) 
 			end
 			
 			local connecting = false
@@ -1128,17 +1128,34 @@ end
 						end
 					end)
 			
-					if success and ws then
-						break -- Exit loop if successfully connected and ready
-					else
-						print("WebSocket connection failed. Retrying in 10 seconds...")
-						wait(10)
-					end
-				end
-			end
-			
-			-- Start connection
-			connect()
+					function connect()
+    if connecting then return end
+    connecting = true
+
+    while true do
+        local success, err = pcall(function()
+            ws = WebSocket.connect(url)
+
+            if ws then
+                ws:Send(client_id)
+                setupWebSocketEvents()
+            else
+                error("WebSocket.connect returned nil")
+            end
+        end)
+
+        if success and ws then
+            print("Connected to WebSocket")
+            connecting = false
+            break
+        else
+            warn("WebSocket failed:", err)
+            task.wait(10)
+        end
+    end
+end
+
+connect()
 
 		end
 
