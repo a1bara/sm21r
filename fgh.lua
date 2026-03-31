@@ -192,7 +192,7 @@ end
 
 
 
-local url = "ws://localhost:8001"
+local url = "ws://localhost:8000"
 local ws
 local Players = game:GetService('Players')
 local Terrain = Workspace:FindFirstChild('Terrain')
@@ -1077,15 +1077,40 @@ if table.find(getgenv().alts, localPlayer.UserId) then
 				end)
 			
 				ws.OnClose:Connect(function()
-					print("WebSocket closed. Starting reconnect loop...")
-					connect() -- Retry connection indefinitely
-				end)
+    print("WebSocket closed. Reconnecting in 5s...")
+    task.wait(5)
+    connect()
+end)you 
 			end
 			
-			function connect()
-				while true do
-					local success = pcall(function()
-						ws = WebSocket.connect(url)
+			local connecting = false
+
+function connect()
+    if connecting then return end
+    connecting = true
+
+    while true do
+        local success, err = pcall(function()
+            ws = WebSocket.connect(url)
+
+            if ws then
+                ws:Send(client_id)
+                setupWebSocketEvents()
+            else
+                error("WebSocket.connect returned nil")
+            end
+        end)
+
+        if success and ws then
+            print("Connected to WebSocket")
+            connecting = false
+            break
+        else
+            warn("WebSocket failed:", err)
+            task.wait(10)
+        end
+    end
+end
 			
 						if ws then
 							local sent, err = pcall(function()
