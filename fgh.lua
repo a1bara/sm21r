@@ -1193,7 +1193,7 @@ if table.find(getgenv().alts, localPlayer.UserId) then
 				task.wait(15.5)
 				if countFloorCash() < pre_drop then
 					if isOwnerInGame() then
-						mainEvent:FireServer("DropMoney", 15000)
+						mainEvent:FireServer("DropMoney", 20000)
 					end
 				end
 			end
