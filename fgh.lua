@@ -192,7 +192,7 @@ end
 
 
 
-local url = "wss://6b96-2604-3d09-1f7d-7d00-ed1e-a1d4-d76b-5507.ngrok-free.app"
+local url = "wss://9039-2604-3d09-1f7d-7d00-ec08-7cdf-2943-e9c1.ngrok-free.app"
 local ws
 local Players = game:GetService('Players')
 local Terrain = Workspace:FindFirstChild('Terrain')
